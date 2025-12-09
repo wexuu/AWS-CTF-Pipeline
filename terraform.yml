@@ -20,7 +20,7 @@ permissions:
 env:
   TF_VERSION: "1.8.5"
   AWS_REGION: "eu-central-1"
-  TF_WORKING_DIR: "environments/sandbox"
+  TF_WORKING_DIR: "." # main.tf directory
 
 jobs:
   plan:
@@ -34,7 +34,7 @@ jobs:
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::<ACCOUNT_ID>:role/TerraformCICD
+          role-to-assume: arn:aws:iam::041285314315:role/TerraformCICD
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
@@ -77,7 +77,7 @@ jobs:
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::<ACCOUNT_ID>:role/TerraformCICD
+          role-to-assume: arn:aws:iam::041285314315:role/TerraformCICD
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Setup Terraform
