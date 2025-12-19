@@ -9,7 +9,7 @@ terraform {
   }
   backend "s3" {
     bucket  = "cloud-ctf-tf-state"
-    region  = var.aws_region
+    region  = "eu-central-1"
     key     = "cloud-ctf/terraform.tfstate"
     encrypt = true
   }
