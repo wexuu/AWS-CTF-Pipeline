@@ -7,9 +7,9 @@ terraform {
       version = "~> 5.0"
     }
   }
-    backend "s3" {
-    bucket = "cloud-ctf-tf-state"
-    region = "eu-central-1"
+  backend "s3" {
+    bucket  = "cloud-ctf-tf-state"
+    region  = "eu-central-1"
     encrypt = true
   }
 }
