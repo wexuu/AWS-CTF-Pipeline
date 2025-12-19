@@ -52,5 +52,8 @@ resource "aws_subnet" "private" {
 }
 resource "aws_internet_gateway" "vpc_gw" {
   vpc_id = aws_vpc.vpc-main.id
-
+  tags = {
+    Name    = "cloud-ctf-gateway" # ← TO jest nazwa widoczna w konsoli
+    Project = "cloud-ctf"
+  }
 }
