@@ -7,6 +7,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+    backend "s3" {
+    bucket = "cloud-ctf-tf-state"
+    region = "eu-central-1"
+    encrypt = true
+  }
 }
 
 variable "aws_region" {
@@ -17,7 +22,4 @@ variable "aws_region" {
 
 provider "aws" {
   region = var.aws_region
-}
-resource "aws_s3_bucket" "tf-state" {
-  bucket = "cloud-ctf-tf-state"
 }
