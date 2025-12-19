@@ -25,28 +25,28 @@ provider "aws" {
   region = var.aws_region
 }
 resource "aws_vpc" "vpc-main" {
-  cidr_block = "10.0.0.0/24"
+  cidr_block           = "10.0.0.0/24"
   enable_dns_hostnames = true
   enable_dns_support   = true
   tags = {
-    Name    = "cloud-ctf-vpc"   # ← TO jest nazwa widoczna w konsoli
+    Name    = "cloud-ctf-vpc" # ← TO jest nazwa widoczna w konsoli
     Project = "cloud-ctf"
   }
 }
 
-resource "aws_subnet" "public"{
-  vpc_id = aws_vpc.vpc-main.id
+resource "aws_subnet" "public" {
+  vpc_id     = aws_vpc.vpc-main.id
   cidr_block = "10.0.0.0/28"
-    tags = {
-    Name    = "cloud-ctf-subnet-public"   # ← TO jest nazwa widoczna w konsoli
+  tags = {
+    Name    = "cloud-ctf-subnet-public" # ← TO jest nazwa widoczna w konsoli
     Project = "cloud-ctf"
   }
 }
-resource "aws_subnet" "private"{
-  vpc_id = aws_vpc.vpc-main.id
+resource "aws_subnet" "private" {
+  vpc_id     = aws_vpc.vpc-main.id
   cidr_block = "10.0.0.128/28"
-    tags = {
-    Name    = "cloud-ctf-subnet-private"   # ← TO jest nazwa widoczna w konsoli
+  tags = {
+    Name    = "cloud-ctf-subnet-private" # ← TO jest nazwa widoczna w konsoli
     Project = "cloud-ctf"
   }
 }
