@@ -29,7 +29,7 @@ resource "aws_vpc" "vpc-main" {
   enable_dns_hostnames = true
   enable_dns_support   = true
   tags = {
-    Name    = "cloud-ctf-vpc" # ← TO jest nazwa widoczna w konsoli
+    Name    = "cloud-ctf-vpc"
     Project = "cloud-ctf"
   }
 }
@@ -38,7 +38,7 @@ resource "aws_subnet" "public" {
   vpc_id     = aws_vpc.vpc-main.id
   cidr_block = "10.0.0.0/28"
   tags = {
-    Name    = "cloud-ctf-subnet-public" # ← TO jest nazwa widoczna w konsoli
+    Name    = "cloud-ctf-subnet-public"
     Project = "cloud-ctf"
   }
 }
@@ -46,14 +46,14 @@ resource "aws_subnet" "private" {
   vpc_id     = aws_vpc.vpc-main.id
   cidr_block = "10.0.0.128/28"
   tags = {
-    Name    = "cloud-ctf-subnet-private" # ← TO jest nazwa widoczna w konsoli
+    Name    = "cloud-ctf-subnet-private"
     Project = "cloud-ctf"
   }
 }
 resource "aws_internet_gateway" "vpc_gw" {
   vpc_id = aws_vpc.vpc-main.id
   tags = {
-    Name    = "cloud-ctf-gateway" # ← TO jest nazwa widoczna w konsoli
+    Name    = "cloud-ctf-gateway"
     Project = "cloud-ctf"
   }
 }
