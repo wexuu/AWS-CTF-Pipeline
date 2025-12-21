@@ -13,15 +13,13 @@ resource "aws_instance" "web" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.public_web_sg.id]
-  #associate_public_ip_address = true
-
-  user_data = <<-EOF
+  key_name               = aws_key_pair.cloud_ctf-ec2-kuba-pubkey
+  user_data              = <<-EOF
     #!/bin/bash
     yum update -y
     yum install -y nginx
     systemctl enable nginx
     systemctl start nginx
-
               cat > /usr/share/nginx/html/index.html << 'HTML'
               <html>
                 <head><title>Cloud CTF Lab</title></head>
@@ -36,6 +34,10 @@ resource "aws_instance" "web" {
     Name    = "cloud-ctf-web"
     Project = "cloud-ctf"
   }
+}
+resource "aws_key_pair" "cloud_ctf-ec2-kuba-pubkey" {
+  key_name   = "cloud-ctf-ec2-kuba-pubkey" # nazwa, którą zobaczysz w EC2
+  public_key = file(var.cloud-ctf-ec2-kuba-ssh-public-path)
 }
 
 output "web_public_ip" {
