@@ -1,5 +1,5 @@
 resource "aws_security_group" "public_web_sg" {
-  vpc_id = aws_vpc.lab.id
+  vpc_id = aws_vpc.vpc-main.id
 
   ingress {
     from_port   = 80
