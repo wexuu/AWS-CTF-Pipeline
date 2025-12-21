@@ -22,7 +22,6 @@ env:
   TF_VERSION: "1.8.5"
   AWS_REGION: "eu-central-1"
   TF_WORKING_DIR: "."
-  TF_VAR_ssh_pub_key: ${{ secrets.SSH_PUB_KEY }}
 jobs:
   plan:
     name: Plan

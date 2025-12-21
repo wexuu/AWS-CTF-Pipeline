@@ -13,7 +13,7 @@ resource "aws_instance" "web" {
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.public_web_sg.id]
-  key_name               = aws_key_pair.cloud_ctf-ec2-kuba-pubkey.key_name
+  key_name               = "cloud-ctf-key"
   user_data              = <<-EOF
     #!/bin/bash
     yum update -y
@@ -34,10 +34,6 @@ resource "aws_instance" "web" {
     Name    = "cloud-ctf-web"
     Project = "cloud-ctf"
   }
-}
-resource "aws_key_pair" "cloud_ctf-ec2-kuba-pubkey" {
-  key_name   = "cloud-ctf-ec2-kuba-pubkey" # nazwa, którą zobaczysz w EC2
-  public_key = var.cloud-ctf-ssh-key
 }
 output "web_public_ip" {
   value = aws_instance.web.public_ip
