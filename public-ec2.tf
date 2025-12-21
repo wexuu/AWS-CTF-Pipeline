@@ -37,7 +37,7 @@ resource "aws_instance" "web" {
 }
 resource "aws_key_pair" "cloud_ctf-ec2-kuba-pubkey" {
   key_name   = "cloud-ctf-ec2-kuba-pubkey" # nazwa, którą zobaczysz w EC2
-  public_key = file(var.cloud-ctf-ec2-kuba-ssh-public-path)
+  public_key = var.cloud-ctf-ec2-kuba-ssh-public-path
 }
 
 output "web_public_ip" {
