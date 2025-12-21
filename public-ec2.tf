@@ -9,13 +9,13 @@ data "aws_ami" "al2023" {
 }
 
 resource "aws_instance" "web" {
-  ami                    = data.aws_ami.al2023.id
-  instance_type          = "t3.micro"
-  subnet_id              = aws_subnet.public.id
-  vpc_security_group_ids = [aws_security_group.public_web_sg.id]
-  key_name               = "cloud-ctf-key"
+  ami                         = data.aws_ami.al2023.id
+  instance_type               = "t3.micro"
+  subnet_id                   = aws_subnet.public.id
+  vpc_security_group_ids      = [aws_security_group.public_web_sg.id]
+  key_name                    = "cloud-ctf-key"
   user_data_replace_on_change = true
-  user_data              = <<-EOF
+  user_data                   = <<-EOF
     #!/bin/bash
     yum update -y
     yum install -y nginx
