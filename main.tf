@@ -33,23 +33,6 @@ resource "aws_vpc" "vpc-main" {
     Project = "cloud-ctf"
   }
 }
-
-resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.vpc-main.id
-  cidr_block = "10.0.0.0/28"
-  tags = {
-    Name    = "cloud-ctf-subnet-public"
-    Project = "cloud-ctf"
-  }
-}
-resource "aws_subnet" "private" {
-  vpc_id     = aws_vpc.vpc-main.id
-  cidr_block = "10.0.0.128/28"
-  tags = {
-    Name    = "cloud-ctf-subnet-private"
-    Project = "cloud-ctf"
-  }
-}
 resource "aws_internet_gateway" "vpc_gw" {
   vpc_id = aws_vpc.vpc-main.id
   tags = {
