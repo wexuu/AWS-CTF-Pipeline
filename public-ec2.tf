@@ -25,7 +25,7 @@ resource "aws_instance" "web" {
               <html>
                 <head><title>Cloud CTF Lab</title></head>
                 <body>
-                  <h1>Cloud CTF</h1>
+                  <h1>Cloud CTF - test</h1>
                 </body>
               </html>
               HTML
