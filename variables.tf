@@ -4,5 +4,5 @@ variable "my_ip_cidr" {
 }
 
 variable "cloud-ctf-ssh-key" {
-  type    = string
+  type = string
 }
