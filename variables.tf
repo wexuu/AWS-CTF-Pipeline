@@ -3,7 +3,6 @@ variable "my_ip_cidr" {
   default = "0.0.0.0/32"
 }
 
-variable "cloud-ctf-ec2-kuba-ssh-public-path" {
+variable "cloud-ctf-ssh-key" {
   type    = string
-  default = "keys/cloud-ctf-ec2-kuba.pub"
 }
