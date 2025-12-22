@@ -30,7 +30,7 @@ HTML
                       index  index.html;
                   }
 
-                  location /juice-shop/ {
+                  location /juice/ {
                       proxy_pass         http://${aws_instance.web_private.private_ip}:3000/;
                       proxy_http_version 1.1;
                       proxy_set_header   Host $host;
@@ -61,7 +61,7 @@ resource "aws_security_group" "public_web_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.my_ip_cidr]
   }
   egress {
     from_port   = 0
