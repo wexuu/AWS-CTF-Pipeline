@@ -6,20 +6,41 @@ resource "aws_instance" "web_public" {
   key_name                    = "cloud-ctf-key"
   user_data_replace_on_change = true
   user_data                   = <<-EOF
-    #!/bin/bash
+  #!/bin/bash
     yum update -y
     yum install -y nginx
     systemctl enable nginx
     systemctl start nginx
-              cat > /usr/share/nginx/html/index.html << 'HTML'
+            cat > /usr/share/nginx/html/index.html << 'HTML'
               <html>
                 <head><title>Cloud CTF Lab</title></head>
                 <body>
                   <h1>Cloud CTF - test</h1>
                 </body>
               </html>
-              HTML
-              EOF
+HTML
+
+            cat > /etc/nginx/conf.d/juice-shop.conf << 'NGINX'
+              server {
+                  listen 80;
+                  server_name _;
+
+                  location / {
+                      root   /usr/share/nginx/html;
+                      index  index.html;
+                  }
+
+                  location /juice-shop/ {
+                      proxy_pass         http://${aws_instance.web_private.private_ip}:3000/;
+                      proxy_http_version 1.1;
+                      proxy_set_header   Host $host;
+                      proxy_set_header   X-Real-IP $remote_addr;
+                      proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+                      proxy_set_header   X-Forwarded-Proto $scheme;
+                  }
+              }
+NGINX
+  EOF
 
   tags = {
     Name    = "cloud-ctf-web"

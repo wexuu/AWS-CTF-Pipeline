@@ -22,7 +22,7 @@ resource "aws_instance" "web_private" {
     yum install -y docker
     service docker start
     docker pull bkimminich/juice-shop
-    docker run -d -p 80:3000 bkimminich/juice-shop
+    docker run -d -p 3000:3000 bkimminich/juice-shop
     EOF
 
   tags = {
@@ -40,6 +40,12 @@ resource "aws_security_group" "private_web_sg" {
     cidr_blocks = [var.my_ip_cidr]
   }
   ingress {
+    from_port       = 3000
+    to_port         = 3000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.public_web_sg.id]
+  }
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -51,11 +57,11 @@ resource "aws_security_group" "private_web_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name    = "cloud-ctf-private-sg"
+    Project = "cloud-ctf"
+  }
 }
 output "web_private_ip" {
-  value = aws_instance.web_private.public_ip
-}
-
-output "web_private_url" {
-  value = "http://${aws_instance.web_private.public_ip}"
+  value = aws_instance.web_private.private_ip
 }
