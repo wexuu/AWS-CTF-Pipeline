@@ -22,7 +22,7 @@ HTML
 
             cat > /etc/nginx/conf.d/juice-shop.conf << 'NGINX'
               server {
-                  listen 80;
+                  listen 3000;
                   server_name _;
 
                   location / {
