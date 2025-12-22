@@ -22,7 +22,7 @@ resource "aws_route_table" "private_route" {
   }
 
   tags = {
-    Name = "cloud-ctf-private-rt"
+    Name    = "cloud-ctf-private-rt"
     Project = "cloud-ctf"
   }
 }
@@ -32,7 +32,7 @@ resource "aws_route_table_association" "private_assoc" {
   route_table_id = aws_route_table.private_route.id
 }
 resource "aws_eip" "nat_eip" {
-  
+
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -40,7 +40,7 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = aws_subnet.public.id
 
   tags = {
-    Name = "cloud-ctf-nat-gateway"
+    Name    = "cloud-ctf-nat-gateway"
     Project = "cloud-ctf"
   }
 }
