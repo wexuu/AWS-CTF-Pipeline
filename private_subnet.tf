@@ -7,7 +7,7 @@ resource "aws_subnet" "private" {
   }
 }
 resource "aws_route_table" "private_route" {
-  vpc_id = aws_vpc.lab.id
+  vpc_id = aws_vpc.vpc-main.id
 
   route {
     cidr_block     = "0.0.0.0/0"
