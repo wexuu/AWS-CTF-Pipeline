@@ -8,7 +8,7 @@ data "aws_ami" "al2023" {
   }
 }
 
-resource "aws_instance" "web-private" {
+resource "aws_instance" "web_private" {
   ami                         = data.aws_ami.al2023.id
   instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.private.id
