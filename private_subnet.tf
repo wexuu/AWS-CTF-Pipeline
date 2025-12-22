@@ -1,4 +1,4 @@
-resource "aws_route_table" "public_route" {
+resource "aws_route_table" "private_route" {
   vpc_id = aws_vpc.vpc-main.id
   tags = {
     Name    = "cloud-ctf-private-route"
