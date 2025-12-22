@@ -6,7 +6,7 @@ resource "aws_instance" "web_public" {
   key_name                    = "cloud-ctf-key"
   user_data_replace_on_change = true
   user_data                   = <<-EOF
-  #!/bin/bash
+#!/bin/bash
     yum update -y
     yum install -y nginx
     systemctl enable nginx
@@ -22,7 +22,7 @@ HTML
 
             cat > /etc/nginx/conf.d/juice-shop.conf << 'NGINX'
               server {
-                  listen 3000;
+                  listen 80;
                   server_name _;
 
                   location / {
@@ -40,6 +40,7 @@ HTML
                   }
               }
 NGINX
+            systemctl restart nginx
   EOF
 
   tags = {
