@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Aby zniszczyć środowisko, wpisz dokładnie: DESTROY"
+        description: "Wisz dokładnie: DESTROY"
         required: true
         default: "NO"
         type: string
@@ -51,5 +51,3 @@ jobs:
       - name: Terraform destroy
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: terraform destroy -auto-approve
-        # Jeśli chcesz użyć planu:
-        # run: terraform apply -auto-approve tfplan-destroy
